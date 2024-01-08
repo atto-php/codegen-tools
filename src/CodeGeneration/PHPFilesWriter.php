@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Atto\CodegenTools\CodeGeneration;
 
 
+use Atto\CodegenTools\FileSystem;
+
 final class PHPFilesWriter
 {
     private PHPClassWriter $phpClassWriter;
@@ -13,13 +15,7 @@ final class PHPFilesWriter
         private readonly string $directory,
         private readonly string $baseNamespace
     ) {
-        if (!file_exists($this->directory)) {
-            mkdir($this->directory, recursive: true);
-        }
-
-        if (!is_writable($this->directory)) {
-            throw new \RuntimeException('Cannot write to directory');
-        }
+        FileSystem::ensureDirectoryExistsAndIsWritable($this->directory);
 
         $this->phpClassWriter = new PHPClassWriter();
 
@@ -32,9 +28,7 @@ final class PHPFilesWriter
         foreach ($classDefinitions as $classDefinition) {
             $directory = $this->makeDirectory($classDefinition->getNamespace());
 
-            if (!file_exists($directory)) {
-                mkdir($directory, recursive: true);
-            }
+            FileSystem::ensureDirectoryExistsAndIsWritable($directory);
 
             $createdFiles[] = $this->phpClassWriter->writeClass($directory, $classDefinition);
         }
