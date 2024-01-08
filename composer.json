@@ -1,0 +1,17 @@
+{
+    "name": "atto/codegen-tools",
+    "description": "Provides tooling for generating PHP code and packages",
+    "type": "library",
+    "require": {
+        "php": "^8.1",
+        "nikic/php-parser": "^4.17"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Atto\\CodegenTools\\": "src/"
+        }
+    }
+}
