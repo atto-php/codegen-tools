@@ -22,10 +22,6 @@ final class PHPClassWriter
     {
         $filename = sprintf('%s/%s.php', $directory, $classDefinition->getName());
 
-        if (!is_writable($filename)) {
-            throw new \RuntimeException('Cannot write to file');
-        }
-
         file_put_contents(
             $filename,
             $this->printer->prettyPrintFile($this->parser->parse($classDefinition->getCode()))

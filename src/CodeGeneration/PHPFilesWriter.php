@@ -44,6 +44,7 @@ final class PHPFilesWriter
             trim($classNamespace, '\\')
         );
 
-        return str_replace('\\','/', $name);
+        //@TODO ensure directory ends in a /
+        return $this->directory . str_replace('\\','/', $name);
     }
 }

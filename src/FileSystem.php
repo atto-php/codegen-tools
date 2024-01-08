@@ -8,7 +8,7 @@ final class FileSystem
 {
     public static function ensureDirectoryExistsAndIsWritable(string $directory): void
     {
-        if (self::isAWriteableDirectory($directory)) {
+        if (!self::isAWriteableDirectory($directory)) {
             throw new \RuntimeException('Cannot write to directory');
         }
 
