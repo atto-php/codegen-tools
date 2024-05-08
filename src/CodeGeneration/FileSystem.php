@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Atto\CodegenTools;
+namespace Atto\CodegenTools\CodeGeneration;
 
 final class FileSystem
 {
@@ -12,7 +12,7 @@ final class FileSystem
             throw new \RuntimeException('Cannot write to directory');
         }
 
-        mkdir($directory, recursive: true);
+        file_exists($directory) || mkdir($directory, recursive: true);
     }
 
     private static function isAWriteableDirectory(string $directory): bool

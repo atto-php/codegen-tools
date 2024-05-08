@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Atto\CodegenTools\CodeGeneration;
 
+use Atto\CodegenTools\ClassDefinition\PHPClassDefinition;
 use PhpParser\Parser;
 use PhpParser\ParserFactory;
 

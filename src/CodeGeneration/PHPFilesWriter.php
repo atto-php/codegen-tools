@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Atto\CodegenTools\CodeGeneration;
 
 
-use Atto\CodegenTools\FileSystem;
+use Atto\CodegenTools\ClassDefinition\PHPClassDefinitionProducer;
 
 final class PHPFilesWriter
 {

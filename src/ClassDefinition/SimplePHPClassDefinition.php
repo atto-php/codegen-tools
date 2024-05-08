@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Atto\CodegenTools\CodeGeneration;
+namespace Atto\CodegenTools\ClassDefinition;
 
 final class SimplePHPClassDefinition implements PHPClassDefinition
 {
