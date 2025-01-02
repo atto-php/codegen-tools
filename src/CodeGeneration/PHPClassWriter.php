@@ -21,12 +21,18 @@ final class PHPClassWriter
 
     public function writeClass(string $directory, PHPClassDefinition $classDefinition): string
     {
-        $filename = sprintf('%s/%s.php', $directory, $classDefinition->getName());
+        $filename = sprintf('%s/%s', $directory, $classDefinition->getName());
 
-        file_put_contents(
-            $filename,
-            $this->printer->prettyPrintFile($this->parser->parse($classDefinition->getCode()))
-        );
+        try {
+            $code = $this->printer->prettyPrintFile(
+                $this->parser->parse($classDefinition->getCode()) ?? []
+            );
+        } catch (\RuntimeException $e) {
+            $filename = $filename . 'INVALID';
+            $code = $classDefinition->getCode();
+        }
+
+        file_put_contents("$filename.php", $code);
 
         return $filename;
     }
