@@ -15,7 +15,14 @@ final class PHPClassWriter
 
     public function __construct()
     {
-        $this->parser = (new ParserFactory())->createForNewestSupportedVersion();
+        if (method_exists(ParserFactory::class, 'createForNewestSupportedVersion')) {
+            $this->parser = (new ParserFactory())
+                ->createForNewestSupportedVersion();
+        } else {
+            $this->parser = (new ParserFactory())
+                ->create(ParserFactory::ONLY_PHP7);
+        }
+
         $this->printer = new CodeFormatter();
     }
 
